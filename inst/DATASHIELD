@@ -1,3 +1,4 @@
 AggregateMethods:
-   meanDPDS
+   boundedMeanDP,
+   boundedSumDP
 AssignMethods:
