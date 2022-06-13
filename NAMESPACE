@@ -2,4 +2,6 @@
 
 export(boundedMeanDP)
 export(boundedSumDP)
+export(maxDP)
 export(medianDP)
+export(minDP)
