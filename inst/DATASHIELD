@@ -1,5 +1,6 @@
 AggregateMethods:
   boundedMeanDP,
+  boundedStandardDeviationDP,
   boundedSumDP,
   maxDP,
   medianDP,
