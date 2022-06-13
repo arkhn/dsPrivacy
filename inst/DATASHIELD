@@ -1,5 +1,7 @@
 AggregateMethods:
   boundedMeanDP,
   boundedSumDP,
-  medianDP
+  maxDP,
+  medianDP,
+  minDP
 AssignMethods:
