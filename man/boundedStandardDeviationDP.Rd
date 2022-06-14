@@ -2,13 +2,22 @@
 % Please edit documentation in R/boundedStandardDeviationDP.R
 \name{boundedStandardDeviationDP}
 \alias{boundedStandardDeviationDP}
-\title{Title}
+\title{Differentially private standard deviation}
 \usage{
 boundedStandardDeviationDP(input_data, epsilon, lower_bound, upper_bound)
 }
 \arguments{
-\item{upper_bound}{}
+\item{input_data}{the input vector}
+
+\item{epsilon}{privacy budget}
+
+\item{lower_bound}{lower bound for input values}
+
+\item{upper_bound}{upper bound for input values}
+}
+\value{
+a numeric, differentially private standard deviation of the input vector
 }
 \description{
-Title
+Computes a differentially private standard deviation of a vector
 }

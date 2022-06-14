@@ -2,13 +2,22 @@
 % Please edit documentation in R/boundedMeanDP.R
 \name{boundedMeanDP}
 \alias{boundedMeanDP}
-\title{Title}
+\title{Differentially private mean}
 \usage{
 boundedMeanDP(input_data, epsilon, lower_bound, upper_bound)
 }
 \arguments{
-\item{upper_bound}{}
+\item{input_data}{the input vector}
+
+\item{epsilon}{privacy budget}
+
+\item{lower_bound}{lower bound for input values}
+
+\item{upper_bound}{upper bound for input values}
+}
+\value{
+a numeric, differentially private mean of the input vector
 }
 \description{
-Title
+Computes a differentially private mean of a vector
 }

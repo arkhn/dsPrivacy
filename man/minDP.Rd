@@ -2,13 +2,22 @@
 % Please edit documentation in R/minDP.R
 \name{minDP}
 \alias{minDP}
-\title{Title}
+\title{Differentially private min}
 \usage{
 minDP(input_data, epsilon, lower_bound, upper_bound)
 }
 \arguments{
-\item{upper_bound}{}
+\item{input_data}{the input vector}
+
+\item{epsilon}{privacy budget}
+
+\item{lower_bound}{lower bound for input values}
+
+\item{upper_bound}{upper bound for input values}
+}
+\value{
+a numeric, differentially private min of the input vector
 }
 \description{
-Title
+Computes a differentially private min of a vector
 }
