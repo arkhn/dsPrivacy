@@ -2,13 +2,22 @@
 % Please edit documentation in R/medianDP.R
 \name{medianDP}
 \alias{medianDP}
-\title{Title}
+\title{Differentially private median}
 \usage{
 medianDP(input_data, epsilon, lower_bound, upper_bound)
 }
 \arguments{
-\item{upper_bound}{}
+\item{input_data}{the input vector}
+
+\item{epsilon}{privacy budget}
+
+\item{lower_bound}{lower bound for input values}
+
+\item{upper_bound}{upper bound for input values}
+}
+\value{
+a numeric, differentially private median of the input vector
 }
 \description{
-Title
+Computes a differentially private median of a vector
 }

@@ -2,13 +2,22 @@
 % Please edit documentation in R/maxDP.R
 \name{maxDP}
 \alias{maxDP}
-\title{Title}
+\title{Differentially private max}
 \usage{
 maxDP(input_data, epsilon, lower_bound, upper_bound)
 }
 \arguments{
-\item{upper_bound}{}
+\item{input_data}{the input vector}
+
+\item{epsilon}{privacy budget}
+
+\item{lower_bound}{lower bound for input values}
+
+\item{upper_bound}{upper bound for input values}
+}
+\value{
+a numeric, differentially private max of the input vector
 }
 \description{
-Title
+Computes a differentially private max of a vector
 }
