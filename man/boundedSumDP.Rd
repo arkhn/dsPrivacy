@@ -2,13 +2,22 @@
 % Please edit documentation in R/boundedSumDP.R
 \name{boundedSumDP}
 \alias{boundedSumDP}
-\title{Title}
+\title{Differentially private sum}
 \usage{
-boundedSumDP(input_data, epsilon, delta, lower_bound, upper_bound)
+boundedSumDP(input_data, epsilon, lower_bound, upper_bound)
 }
 \arguments{
-\item{upper_bound}{}
+\item{input_data}{the input vector}
+
+\item{epsilon}{privacy budget}
+
+\item{lower_bound}{lower bound for input values}
+
+\item{upper_bound}{upper bound for input values}
+}
+\value{
+a numeric, differentially private sum of the input vector
 }
 \description{
-Title
+Computes a differentially private sum of a vector
 }
