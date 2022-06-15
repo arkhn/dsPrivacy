@@ -11,6 +11,6 @@
 
 
 boundedMeanDP <- function(input_data, epsilon, lower_bound, upper_bound){
-  res <- py_module$mean_PyDP$pyDP_bounded_mean(input_data, epsilon, lower_bound, upper_bound)
+  res <- py_module$pyDP_bounded_mean(input_data, epsilon, lower_bound, upper_bound)
   return(res)
 }
