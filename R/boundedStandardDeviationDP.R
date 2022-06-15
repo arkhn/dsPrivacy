@@ -7,6 +7,7 @@
 #' @param upper_bound upper bound for input values
 #'
 #' @return a numeric, differentially private standard deviation of the input vector
+#' @export
 
 
 boundedStandardDeviationDP <- function(input_data, epsilon, lower_bound, upper_bound){

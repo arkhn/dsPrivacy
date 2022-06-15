@@ -7,6 +7,7 @@
 #' @param upper_bound upper bound for input values
 #'
 #' @return a numeric, differentially private min of the input vector
+#' @export
 
 
 minDP <- function(input_data, epsilon, lower_bound, upper_bound){
