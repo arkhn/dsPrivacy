@@ -1,1 +1,1 @@
-import .mean_PyDP as mean_PyDP
+from mean_PyDP import pyDP_bounded_mean
