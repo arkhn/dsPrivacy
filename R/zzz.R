@@ -4,5 +4,5 @@ py_module <- NULL
   library(reticulate)
 
   reticulate::use_virtualenv(virtualenv = ".venv", required = TRUE)
-  py_module <<- reticulate::import_from_path(module = "pydp_wrap", path = system.file("python", package = packageName()))
+  py_module <<- reticulate::import_from_path(module = "pydp_wrapper", path = system.file("python", package = packageName()))
 }
