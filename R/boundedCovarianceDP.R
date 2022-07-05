@@ -13,7 +13,7 @@
 #' @export
 
 
-boundedCovarianceDP <- function(x, y, epsilon, x_min, x_max, y_min, y_max)){
-  res <- py_module$covariance_custom$custom_bounded_covariance(x, y, epsilon, x_min, x_max, y_min, y_max))
+boundedCovarianceDP <- function(x, y, epsilon, x_min, x_max, y_min, y_max){
+  res <- py_module$covariance_custom$custom_bounded_covariance(x, y, epsilon, x_min, x_max, y_min, y_max)
   return(res)
 }
