@@ -10,7 +10,9 @@ def lap(scale: float) -> float:
     return np.random.laplace(0, scale)
 
 
-def noisy_average(x: np.array, epsilon: float, x_min: float, x_max: float, n: int, n_noisy: int) -> float:
+def noisy_average(
+    x: np.array, epsilon: float, x_min: float, x_max: float, n: int, n_noisy: int
+) -> float:
     """Compute a differential implementation of the average.
 
     This is the implementation of the NoisyAverage with Normalization algorithm from
@@ -34,14 +36,24 @@ def noisy_average(x: np.array, epsilon: float, x_min: float, x_max: float, n: in
     # Crop the data using the bounds provided
     x = np.clip(x, x_min, x_max)
 
-    noisy_sum_normalized_x = sum(x) - n * (x_min + x_max) / 2 + lap((x_max - x_min) / epsilon)
+    noisy_sum_normalized_x = (
+        sum(x) - n * (x_min + x_max) / 2 + lap((x_max - x_min) / epsilon)
+    )
 
     noisy_average_x = noisy_sum_normalized_x / n_noisy + (x_min + x_max) / 2
 
     return noisy_average_x
 
 
-def custom_bounded_covariance(x: np.array, y: np.array, epsilon: float, x_min: float, x_max: float, y_min: float, y_max: float) -> float:
+def custom_bounded_covariance(
+    x: np.array,
+    y: np.array,
+    epsilon: float,
+    x_min: float,
+    x_max: float,
+    y_min: float,
+    y_max: float,
+) -> float:
     """Compute a differential implementation of the covariance.
 
     This is a manual implementation of the covariance with differential privacy. Note
@@ -85,5 +97,5 @@ def custom_bounded_covariance(x: np.array, y: np.array, epsilon: float, x_min: f
     noisy_average_xy = noisy_average(xy_normalized, eps, xy_min, xy_max, n, n_noisy)
 
     # n - 1 is used to have an unbiased estimate (like standard implem in numpy)
-    unbiased_noisy_average_xy= noisy_average_xy * n_noisy / (n_noisy - 1)
+    unbiased_noisy_average_xy = noisy_average_xy * n_noisy / (n_noisy - 1)
     return unbiased_noisy_average_xy
