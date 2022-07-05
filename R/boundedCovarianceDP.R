@@ -1,13 +1,13 @@
 #' @title Differentially private covariance
-#' @description Computes a differentially private covariance of a vector
+#' @description Compute a differential implementation of the covariance
 #'
-#' @param x the first input vector
-#' @param y the second input vector
-#' @param epsilon privacy budget
-#' @param x_min lower bound for x
-#' @param x_max upper bound for x
-#' @param y_min lower bound for y
-#' @param y_max upper bound for y
+#' @param x First input to the covariance
+#' @param y Second input to the covariance
+#' @param epsilon Privacy budget
+#' @param x_min Lower bound for x
+#' @param x_max Upper bound for x
+#' @param y_min Lower bound for y
+#' @param y_max Upper bound for y
 #'
 #' @return a numeric, differentially private covariance of the input vectors x and y
 #' @export
