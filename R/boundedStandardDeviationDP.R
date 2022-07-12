@@ -11,6 +11,6 @@
 
 
 boundedStandardDeviationDP <- function(input_data, epsilon, lower_bound, upper_bound){
-  res <- py_module$standard_deviation_PyDP$pyDP_bounded_standard_deviation(input_data, epsilon, lower_bound, upper_bound)
+  res <- py_module$pydp_wrapper$standard_deviation_PyDP$pyDP_bounded_standard_deviation(input_data, epsilon, lower_bound, upper_bound)
   return(res)
 }
