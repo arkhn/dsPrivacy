@@ -11,6 +11,6 @@
 
 
 boundedVarianceDP <- function(input_data, epsilon, lower_bound, upper_bound){
-  res <- py_module$variance_PyDP$pyDP_bounded_variance(input_data, epsilon, lower_bound, upper_bound)
+  res <- py_module$pydp_wrapper$variance_PyDP$pyDP_bounded_variance(input_data, epsilon, lower_bound, upper_bound)
   return(res)
 }

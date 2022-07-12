@@ -1,5 +1,5 @@
 import numpy as np
-
+import logging
 
 def lap(scale: float) -> float:
     """Compute a scalar Laplacian noise.
@@ -27,6 +27,7 @@ def noisy_average(
         n: Number of elements in x
         n_noisy: Differentially private estimation of n
     """
+
     if x_min > x_max:
         raise ValueError("Verify that you bounds are corrected ordered.")
 
@@ -36,8 +37,11 @@ def noisy_average(
     # Crop the data using the bounds provided
     x = np.clip(x, x_min, x_max)
 
+    logging.warning('Watch out!')
+    logging.warning(x)
+
     noisy_sum_normalized_x = (
-        sum(x) - n * (x_min + x_max) / 2 + lap((x_max - x_min) / (2 * epsilon))
+        np.nansum(x) - n * (x_min + x_max) / 2 + lap((x_max - x_min) / (2 * epsilon))
     )
 
     noisy_average_x = noisy_sum_normalized_x / n_noisy + (x_min + x_max) / 2
@@ -71,12 +75,22 @@ def custom_bounded_covariance(
     if len(x) != len(y):
         raise ValueError("Variables should have the same length.")
 
+    x = np.array(x)
+    y = np.array(y)
+
     # Since we compute 4 differentially private operations, we split the budget
     eps_per_query = epsilon / 4
 
-    # Compute the exact and noisy count, as needed for `noisy_average`
-    n = len(x)
-    n_noisy = len(x) + lap(2 / eps_per_query)
+    # Compute the index where both variables are not NaN
+    both_not_nan_index = ~np.isnan(x) & ~np.isnan(y)
+
+    logging.warning(both_not_nan_index)
+
+    # Compute exact and noisy count for non NaN variables, and filter NaN
+    n = np.sum(both_not_nan_index)
+    x = x[both_not_nan_index]
+    y = y[both_not_nan_index]
+    n_noisy = n + lap(2 / eps_per_query)
 
     # Compute noisy average for each variable
     noisy_average_x = noisy_average(x, eps_per_query, x_min, x_max, n, n_noisy)
