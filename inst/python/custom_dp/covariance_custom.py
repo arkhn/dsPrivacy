@@ -37,7 +37,7 @@ def noisy_average(
     x = np.clip(x, x_min, x_max)
 
     noisy_sum_normalized_x = (
-        sum(x) - n * (x_min + x_max) / 2 + lap((x_max - x_min) / epsilon)
+        sum(x) - n * (x_min + x_max) / 2 + lap((x_max - x_min) / (2 * epsilon))
     )
 
     noisy_average_x = noisy_sum_normalized_x / n_noisy + (x_min + x_max) / 2
@@ -72,15 +72,15 @@ def custom_bounded_covariance(
         raise ValueError("Variables should have the same length.")
 
     # Since we compute 4 differentially private operations, we split the budget
-    eps = epsilon / 4
+    eps_per_query = epsilon / 4
 
     # Compute the exact and noisy count, as needed for `noisy_average`
     n = len(x)
-    n_noisy = len(x) + lap(2 / eps)
+    n_noisy = len(x) + lap(2 / eps_per_query)
 
     # Compute noisy average for each variable
-    noisy_average_x = noisy_average(x, eps, x_min, x_max, n, n_noisy)
-    noisy_average_y = noisy_average(y, eps, y_min, y_max, n, n_noisy)
+    noisy_average_x = noisy_average(x, eps_per_query, x_min, x_max, n, n_noisy)
+    noisy_average_y = noisy_average(y, eps_per_query, y_min, y_max, n, n_noisy)
 
     # As we shift the variables, we shift their bounds as well
     x_min_, x_max_ = x_min - noisy_average_x, x_max - noisy_average_x
@@ -94,7 +94,9 @@ def custom_bounded_covariance(
     xy_normalized = (x - noisy_average_x) * (y - noisy_average_y)
 
     # Compute the noisy average of the normalized product, ie the covariance
-    noisy_average_xy = noisy_average(xy_normalized, eps, xy_min, xy_max, n, n_noisy)
+    noisy_average_xy = noisy_average(
+        xy_normalized, eps_per_query, xy_min, xy_max, n, n_noisy
+    )
 
     # n - 1 is used to have an unbiased estimate (like standard implem in numpy)
     unbiased_noisy_average_xy = noisy_average_xy * n_noisy / (n_noisy - 1)

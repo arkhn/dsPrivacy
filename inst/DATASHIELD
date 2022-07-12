@@ -1,5 +1,5 @@
 AggregateMethods:
-  boundedCovarianceDP
+  boundedCovarianceDP,
   boundedMeanDP,
   boundedStandardDeviationDP,
   boundedSumDP,
