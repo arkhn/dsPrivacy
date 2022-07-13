@@ -16,7 +16,7 @@ boundedMeanDP(input_data, epsilon, lower_bound, upper_bound)
 \item{upper_bound}{upper bound for input values}
 }
 \value{
-a numeric, differentially private mean of the input vector
+a named list with 2 differentially private numeric values: the mean (Mean) and the length (Ntotal) of the input vector
 }
 \description{
 Computes a differentially private mean of a vector
