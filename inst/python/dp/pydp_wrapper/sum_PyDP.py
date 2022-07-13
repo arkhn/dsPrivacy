@@ -1,4 +1,3 @@
-import pydp as dp
 from pydp.algorithms.laplacian import BoundedSum
 
 
