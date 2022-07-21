@@ -11,8 +11,8 @@
 
 
 boundedMeanDP <- function(input_data, epsilon, lower_bound, upper_bound){
-  mean <- py_module$mean_PyDP$pyDP_bounded_mean(input_data, epsilon / 2, lower_bound, upper_bound)
-  length <- py_module$count_PyDP$pyDP_count(input_data, epsilon / 2)
+  mean <- py_module$pydp_wrapper$mean_PyDP$pyDP_bounded_mean(input_data, epsilon / 2, lower_bound, upper_bound)
+  length <- py_module$pydp_wrapper$count_PyDP$pyDP_count(input_data, epsilon / 2)
 
   return(list(Mean=mean, Ntotal=length))
 }
