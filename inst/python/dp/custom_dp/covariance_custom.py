@@ -1,5 +1,7 @@
-import numpy as np
 import logging
+
+import numpy as np
+
 
 def lap(scale: float) -> float:
     """Compute a scalar Laplacian noise.
@@ -36,9 +38,6 @@ def noisy_average(
 
     # Crop the data using the bounds provided
     x = np.clip(x, x_min, x_max)
-
-    logging.warning('Watch out!')
-    logging.warning(x)
 
     noisy_sum_normalized_x = (
         np.nansum(x) - n * (x_min + x_max) / 2 + lap((x_max - x_min) / (2 * epsilon))
@@ -108,9 +107,7 @@ def custom_bounded_covariance(
     xy_normalized = (x - noisy_average_x) * (y - noisy_average_y)
 
     # Compute the noisy average of the normalized product, ie the covariance
-    noisy_average_xy = noisy_average(
-        xy_normalized, eps_per_query, xy_min, xy_max, n, n_noisy
-    )
+    noisy_average_xy = noisy_average(xy_normalized, eps_per_query, xy_min, xy_max, n, n_noisy)
 
     # n - 1 is used to have an unbiased estimate (like standard implem in numpy)
     unbiased_noisy_average_xy = noisy_average_xy * n_noisy / (n_noisy - 1)
