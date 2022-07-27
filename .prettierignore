@@ -1,19 +1,12 @@
-### Custom .gitignore ###
-# R stuff
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-__pycache__
-
+### Custom .prettierignore ###
 # Data stuff
 data/
 
 # Pycharm stuff
 .idea/
 
-# Mac stuff
-.DS_Store
+# Models
+models/
 
 ### GitHub's .gitignore Python template ###
 # Byte-compiled / optimized / DLL files
