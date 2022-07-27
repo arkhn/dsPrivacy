@@ -4,6 +4,7 @@ AggregateMethods:
   boundedStandardDeviationDP,
   boundedSumDP,
   boundedVarianceDP,
+  calculationsForStudentTestDP,
   countDP,
   maxDP,
   medianDP,
