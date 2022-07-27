@@ -1,0 +1,60 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+
+[tool]
+
+[tool.black]
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+include = '\.pyi?$'
+line-length = 100
+target-version = ['py36', 'py37', 'py38', 'py39']
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "pass",
+    "raise NotImplementedError",
+    "raise ValueError",
+    "raise TypeError",
+    "if __name__ == .__main__.:"
+]
+
+[tool.isort]
+known_local_folder = [
+    'inst/python',
+]
+line_length = 100
+profile = 'black'
+
+[tool.poetry]
+authors = ["Arkhn Team <hello@arkhn.com>"]
+description = "A DataShield Differential Privacy Library"
+license = "Apache-2.0"
+name = "dsPrivacy"
+readme = "README.md"
+repository = "https://github.com/arkhn/dsPrivacy/tree/main"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+python = "~3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
+
+[tool.pytest.ini_options]
+addopts = "--cov=inst/python/ --cov-report term-missing:skip-covered"
