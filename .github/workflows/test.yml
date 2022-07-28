@@ -1,0 +1,59 @@
+# This workflow runs the testing of the package using pytest, computes the test coverage, and
+# comments the coverage results on GitHub.
+
+name: Test
+
+on:
+  # Note that push on main should be protected against
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - ready_for_review
+      - synchronize
+
+jobs:
+  test:
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.draft == false }}
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install
+
+      - name: Test with pytest
+        run: |
+          poetry run pytest --junitxml=pytest.xml > pytest.txt
+
+      - name: Display Pytest's output
+        if: ${{ always() }}
+        run: |
+          cat pytest.txt
+
+      - name: Comment the coverage
+        uses: MishaKav/pytest-coverage-comment@v1.1.29
+        with:
+          pytest-coverage-path: pytest.txt
+          junitxml-path: pytest.xml
+          title: ai-template coverage report
+          badge-title: ai_template coverage
+          create-new-comment: true
+          report-only-changed-files: false # Setting this to true would be interesting, but the changed files display doesn't work well for now

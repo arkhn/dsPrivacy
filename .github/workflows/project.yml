@@ -1,0 +1,54 @@
+# This workflow assigns the "Tech Team" GitHub's project to all the issues (re)opened in this
+# repository. Initially taken from:
+# https://docs.github.com/en/issues/trying-out-the-new-projects-experience/automating-projects
+
+name: Project assignment
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+
+jobs:
+  project:
+    name: Project assignment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Tech Team project
+        env:
+          GITHUB_TOKEN: ${{ secrets.DOKTEUR_ACCESS_TOKEN }}
+          ORGANIZATION: arkhn
+          PROJECT_NUMBER: 18
+        run: |
+          gh api graphql -f query='
+            query($org: String!, $number: Int!) {
+              organization(login: $org){
+                projectNext(number: $number) {
+                  id
+                  fields(first:20) {
+                    nodes {
+                      id
+                      name
+                      settings
+                    }
+                  }
+                }
+              }
+            }' -f org=$ORGANIZATION -F number=$PROJECT_NUMBER > tech_team_project.json
+
+          echo 'PROJECT_ID='$(jq '.data.organization.projectNext.id' tech_team_project.json) >> $GITHUB_ENV
+
+      - name: Add to project
+        env:
+          GITHUB_TOKEN: ${{ secrets.DOKTEUR_ACCESS_TOKEN }}
+          CONTENT_ID: ${{ github.event.issue.node_id }}
+        run: |
+          item_id="$( gh api graphql -f query='
+            mutation($project:ID!, $content:ID!) {
+              addProjectNextItem(input: {projectId: $project, contentId: $content}) {
+                projectNextItem {
+                  id
+                }
+              }
+            }' -f project=$PROJECT_ID -f content=$CONTENT_ID --jq '.data.addProjectNextItem.projectNextItem.id')"
