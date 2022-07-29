@@ -6,17 +6,18 @@
 
 DataSHIELD is a platform in R for federated analysis of private data. DataSHIELD has a client-server architecture and this package has a client side and server side component.
 
-* The client side package is called `dsPrivacyClient`
+- The client side package is called `dsPrivacyClient`
 
-    * https://github.com/arkhn/dsPrivacyClient
+  - https://github.com/arkhn/dsPrivacyClient
 
-* The server side package is called `dsPrivacy`
+- The server side package is called `dsPrivacy`
 
-    * https://github.com/arkhn/dsPrivacy
+  - https://github.com/arkhn/dsPrivacy
 
 ## Installation
 
 You can install this library on your Opal Server with the following command:
+
 ```R
 # Connect with an administrator credential
 opal = opal.login(url = "", user = "", password = "")
@@ -27,6 +28,7 @@ dsadmin.install_github_package(opal, pkg = "dsDarah", username = "arkhn", ref = 
 ```
 
 On your client side, run the following:
+
 ```R
 library(devtools)
 devtools::install_github('arkhn/dsPrivacyClient', ref = "main")
