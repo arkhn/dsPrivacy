@@ -8,5 +8,8 @@ AggregateMethods:
   countDP,
   maxDP,
   medianDP,
-  minDP
+  minDP,
+  numValidDP,
+  sumDP,
+  sumOfSquaresDP
 AssignMethods:
