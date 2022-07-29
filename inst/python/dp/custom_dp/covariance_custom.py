@@ -1,5 +1,3 @@
-import logging
-
 import numpy as np
 
 
@@ -82,8 +80,6 @@ def custom_bounded_covariance(
 
     # Compute the index where both variables are not NaN
     both_not_nan_index = ~np.isnan(x) & ~np.isnan(y)
-
-    logging.warning(both_not_nan_index)
 
     # Compute exact and noisy count for non NaN variables, and filter NaN
     n = np.sum(both_not_nan_index)
