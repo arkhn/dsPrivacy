@@ -10,7 +10,7 @@
 #' @export
 
 
-sumDP <- function(input_data, epsilon, lower_bound, upper_bound){
+sumDP <- function(input_data, epsilon, lower_bound, upper_bound) {
   sum <- py_module$pydp_wrapper$sum_PyDP$pyDP_bounded_sum(input_data, epsilon, lower_bound, upper_bound)
   return(sum)
 }

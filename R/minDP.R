@@ -10,7 +10,7 @@
 #' @export
 
 
-minDP <- function(input_data, epsilon, lower_bound, upper_bound){
+minDP <- function(input_data, epsilon, lower_bound, upper_bound) {
   res <- py_module$pydp_wrapper$min_PyDP$pyDP_min(input_data, epsilon, lower_bound, upper_bound)
   return(res)
 }

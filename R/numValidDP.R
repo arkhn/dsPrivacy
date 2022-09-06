@@ -8,7 +8,7 @@
 #' @export
 
 
-numValidDP <- function(input_data, epsilon){
+numValidDP <- function(input_data, epsilon) {
   length <- py_module$pydp_wrapper$count_PyDP$pyDP_count(input_data[!is.na(input_data)], epsilon)
   return(length)
 }
