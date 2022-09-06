@@ -10,7 +10,7 @@
 #' @export
 
 
-maxDP <- function(input_data, epsilon, lower_bound, upper_bound){
+maxDP <- function(input_data, epsilon, lower_bound, upper_bound) {
   res <- py_module$pydp_wrapper$max_PyDP$pyDP_max(input_data, epsilon, lower_bound, upper_bound)
   return(res)
 }

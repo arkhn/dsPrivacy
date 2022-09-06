@@ -10,7 +10,7 @@
 #' @export
 
 
-medianDP <- function(input_data, epsilon, lower_bound, upper_bound){
+medianDP <- function(input_data, epsilon, lower_bound, upper_bound) {
   res <- py_module$pydp_wrapper$median_PyDP$pyDP_median(input_data, epsilon, lower_bound, upper_bound)
   return(res)
 }

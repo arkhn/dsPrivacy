@@ -8,7 +8,7 @@
 #' @export
 
 
-countDP <- function(input_data, epsilon){
+countDP <- function(input_data, epsilon) {
   res <- py_module$pydp_wrapper$count_PyDP$pyDP_count(input_data, epsilon)
   return(res)
 }
