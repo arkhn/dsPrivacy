@@ -22,9 +22,9 @@ You can install this library on your Opal Server with the following command:
 # Connect with an administrator credential
 opal = opal.login(url = "", user = "", password = "")
 # If needed, remove the previous version of the package (for a fresh reinstall)
-# dsadmin.remove_package(opal, pkg = "dsDarah", profile = "default")
+# dsadmin.remove_package(opal, pkg = "dsPrivacy", profile = "default")
 # You can use `ref` to provide a custom branch
-dsadmin.install_github_package(opal, pkg = "dsDarah", username = "arkhn", ref = "main", profile = "default")
+dsadmin.install_github_package(opal, pkg = "dsPrivacy", username = "arkhn", ref = "main", profile = "default")
 ```
 
 On your client side, run the following:

@@ -6,9 +6,9 @@ import pytest
 def height_samples_with_bounds():
     """Output a vector of values simulating height samples with value bounds"""
     n = 1000
-    height = np.random.uniform(150, 200, n)
     height_min = 150
     height_max = 200
+    height = np.random.uniform(height_min, height_max, n)
     return height, height_min, height_max
 
 
