@@ -13,7 +13,7 @@
 boundedMeanDP <- function(input_data, epsilon, lower_bound, upper_bound){
   length <- py_module$pydp_wrapper$count_PyDP$pyDP_count(input_data, epsilon / 2)
 
-  minRowsDP <- as.numeric(getOption("dsPrivacy.minRowsDP"))
+  minRowsDP <- as.numeric(getOption("dsPrivacy.minRowsDP", default=0))
 
   if(length < minRowsDP){
     return(list(Mean=NA, Ntotal=NA, ErrorMsg="ERROR: not enough rows to use DP"))
@@ -21,5 +21,5 @@ boundedMeanDP <- function(input_data, epsilon, lower_bound, upper_bound){
 
   mean <- py_module$pydp_wrapper$mean_PyDP$pyDP_bounded_mean(input_data, epsilon / 2, lower_bound, upper_bound)
 
-  return(list(Mean=mean, Ntotal=length))
+  return(list(Mean=mean, Ntotal=length, ErrorMsg=NA))
 }
