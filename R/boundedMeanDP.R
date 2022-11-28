@@ -10,16 +10,23 @@
 #' @export
 
 
-boundedMeanDP <- function(input_data, epsilon, lower_bound, upper_bound){
-  length <- py_module$pydp_wrapper$count_PyDP$pyDP_count(input_data, epsilon / 2)
+boundedMeanDP <- function(input_data, epsilon, lower_bound, upper_bound) {
+  epsilon_threshold <- 0.1 * epsilon
+  epsilon_remaining <- epsilon - epsilon_threshold
 
-  minRowsDP <- as.numeric(getOption("dsPrivacy.minRowsDP", default=0))
+  length <- py_module$pydp_wrapper$count_PyDP$pyDP_count(input_data, epsilon_threshold)
 
-  if(length < minRowsDP){
-    return(list(Mean=NA, Ntotal=NA, ErrorMsg="ERROR: not enough rows to use DP"))
+  minRowsDP <- as.numeric(getOption("dsPrivacy.minRowsDP", default = 0))
+
+  if (length < minRowsDP) {
+    return(list(
+      Mean = NA,
+      Ntotal = NA,
+      ErrorMsg = sprintf("ERROR: not enough rows to use DP (estimated: %s, required %s)", length, minRowsDP)
+    ))
   }
 
-  mean <- py_module$pydp_wrapper$mean_PyDP$pyDP_bounded_mean(input_data, epsilon / 2, lower_bound, upper_bound)
+  mean <- py_module$pydp_wrapper$mean_PyDP$pyDP_bounded_mean(input_data, epsilon_remaining, lower_bound, upper_bound)
 
-  return(list(Mean=mean, Ntotal=length, ErrorMsg=NA))
+  return(list(Mean = mean, Ntotal = length, ErrorMsg = NA))
 }
