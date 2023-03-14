@@ -10,6 +10,6 @@
 
 
 tableDP <- function(x, y, epsilon) {
-  table <- DPpack::tableDP(x, y, eps=epsilon, which.sensitivity='bounded', mechanism='Laplace', type.DP='pDP')
+  table <- DPpack::tableDP(x, y, eps = epsilon, which.sensitivity = "bounded", mechanism = "Laplace", type.DP = "pDP")
   return(table)
 }
