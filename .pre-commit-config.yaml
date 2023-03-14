@@ -26,14 +26,14 @@ repos:
     hooks:
       - id: black
 
-  # Isort is used to re-organize our import statements in Python
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.10.1
-    hooks:
-      - id: isort
+  # # Isort is used to re-organize our import statements in Python
+  # - repo: https://github.com/pycqa/isort
+  #   rev: 5.10.1
+  #   hooks:
+  #     - id: isort
 
   # Flake8 is used to perform various code sanity checks in Python
-  - repo: https://gitlab.com/PyCQA/flake8
+  - repo: https://github.com/pycqa/flake8
     rev: 4.0.1
     hooks:
       - id: flake8
@@ -48,7 +48,7 @@ repos:
 
   # Bandit is used to check for potential security issues or vulnerabilities in Python; it's also
   # not used in tests as it prevents the use of `assert`
-  - repo: https://github.com/PyCQA/bandit
+  - repo: https://github.com/pycqa/bandit
     rev: 1.7.4
     hooks:
       - id: bandit
