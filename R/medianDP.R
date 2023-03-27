@@ -11,6 +11,8 @@
 
 
 medianDP <- function(input_data, epsilon, lower_bound, upper_bound) {
-  res <- py_module$pydp_wrapper$median_PyDP$pyDP_median(input_data, epsilon, lower_bound, upper_bound)
-  return(res)
+  median <- py_module$pydp_wrapper$median_PyDP$pyDP_median(input_data, epsilon / 2, lower_bound, upper_bound)
+  length <- py_module$pydp_wrapper$count_PyDP$pyDP_count(input_data, epsilon / 2)
+
+  return(list(Median = median, Ntotal = length))
 }
