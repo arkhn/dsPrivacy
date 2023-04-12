@@ -6,6 +6,7 @@ AggregateMethods:
   boundedVarianceDP,
   tableDP,
   countDP,
+  linearRegressionDP,
   maxDP,
   medianDP,
   minDP,
