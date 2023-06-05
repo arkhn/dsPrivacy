@@ -10,6 +10,11 @@
 
 
 linearRegressionDP <- function(target_column, input_columns, epsilon) {
+  # Don't answer the query if epsilon is too high
+  if(epsilon > 100){
+    stop("FAILED: espilon should be less than 100", call. = FALSE)
+  }
+
   cbindtext <- paste0("cbind(", input_columns, ")")
   input_X <- eval(parse(text=cbindtext), envir = parent.frame())
 
