@@ -11,6 +11,11 @@
 
 
 maxDP <- function(input_data, epsilon, lower_bound, upper_bound) {
+  # Don't answer the query if epsilon is too high
+  if(epsilon > 100){
+    stop("FAILED: espilon should be less than 100", call. = FALSE)
+  }
+
   res <- py_module$pydp_wrapper$max_PyDP$pyDP_max(input_data, epsilon, lower_bound, upper_bound)
   return(res)
 }

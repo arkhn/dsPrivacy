@@ -9,6 +9,11 @@
 
 
 countDP <- function(input_data, epsilon) {
+  # Don't answer the query if epsilon is too high
+  if(epsilon > 100){
+    stop("FAILED: espilon should be less than 100", call. = FALSE)
+  }
+
   res <- py_module$pydp_wrapper$count_PyDP$pyDP_count(input_data, epsilon)
   return(res)
 }
